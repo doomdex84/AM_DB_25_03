@@ -1,16 +1,28 @@
-DROP DATABASE IF EXISTS AM_DB_25_03;
-CREATE DATABASE AM_DB_25_03;
-USE AM_DB_25_03;
+drop database if exists AM_DB_25_03;
+create database AM_DB_25_03;
+use AM_DB_25_03;
 
-CREATE TABLE article(
-   title VARCHAR (100),
-   `body` TEXT
+create table article(
+                        id int(10) unsigned not null primary key auto_increment,
+                        regDate datetime not null,
+                        updateDate datetime not null,
+                        title char(100) not null,
+                        `body` text not null
 );
 
-SHOW TABLES ;
+select *
+from article;
 
-desc article;
+select now();
 
-INSERT INTO article
-SET title = `제목`,
-    `body` = `내용`;
+select '제목1';
+
+select concat('제목',' 1');
+
+select substring(RAND() * 1000 from 1 for 2);
+
+insert into article
+set regDate = now(),
+    updateDate = now(),
+    title = concat('제목',substring(RAND() * 1000 from 1 for 2)),
+    `body` = concat('내용',substring(RAND() * 1000 from 1 for 2));
