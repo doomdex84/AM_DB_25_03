@@ -5,19 +5,19 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class JDBCModifyTest {
+public class JDBCDeleteTest {
     public static void main(String[] args) {
         Connection conn = null;
+
         PreparedStatement pstmt = null;
-
-
         try {
             Class.forName("org.mariadb.jdbc.Driver");
             String url = "jdbc:mariadb://127.0.0.1:3306/AM_DB_25_03?useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Seoul";
             conn = DriverManager.getConnection(url, "root", "");
             System.out.println("연결 성공!");
 
-            String sql = "update article set title = '제목제목제목', `body` = '여기여기여기' where id = 3";
+
+            String sql = "delete from article where id = 8";
 
             System.out.println(sql);
 
@@ -26,6 +26,7 @@ public class JDBCModifyTest {
             int affectedRows = pstmt.executeUpdate();
 
             System.out.println("affected rows: " + affectedRows);
+
 
         } catch (ClassNotFoundException e) {
             System.out.println("드라이버 로딩 실패" + e);
