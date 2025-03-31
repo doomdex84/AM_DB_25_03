@@ -1,5 +1,7 @@
 
-package org.example;
+package org.example.test;
+
+import org.example.Article;
 
 import java.sql.*;
 import java.util.ArrayList;
