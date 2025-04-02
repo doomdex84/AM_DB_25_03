@@ -110,6 +110,7 @@ public class DBUtil {
     public static int insert(Connection dbConn, SecSql sql) {
         int id = -1;
 
+
         PreparedStatement stmt = null;
         ResultSet rs = null;
 
