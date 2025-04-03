@@ -13,6 +13,10 @@ public class Article {
     private String name;
 
 
+
+
+
+
     public String getName() {
         return name;
     }
@@ -28,6 +32,8 @@ public class Article {
         this.memberId = memberId;
         this.title = title;
         this.body = body;
+
+
     }
 
     public Article(Map<String, Object> articleMap) {
