@@ -3,11 +3,9 @@ package org.example;
 import org.example.controller.ArticleController;
 import org.example.controller.MemberController;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import java.util.Scanner;
 
 public class App {
@@ -64,7 +62,9 @@ public class App {
         MemberController memberController = new MemberController(sc, conn);
         ArticleController articleController = new ArticleController(sc, conn);
 
-        if (cmd.equals("member join")) {
+        if (cmd.equals("member login")) {
+            memberController.login();
+        } else if (cmd.equals("member join")) {
             memberController.doJoin();
         } else if (cmd.equals("article write")) {
             articleController.doWrite();
@@ -79,6 +79,8 @@ public class App {
         } else {
             System.out.println("사용할 수 없는 명령어입니다");
         }
+
+
         return 0;
     }
 }
