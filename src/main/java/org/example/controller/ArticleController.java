@@ -4,15 +4,11 @@ import org.example.container.Container;
 import org.example.dto.Article;
 import org.example.service.ArticleService;
 
-
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class ArticleController {
-
-
-
 
     private ArticleService articleService;
     private Scanner sc;
@@ -20,18 +16,22 @@ public class ArticleController {
     public ArticleController() {
         this.articleService = Container.articleService;
         this.sc = Container.sc;
-
     }
 
-
     public void doWrite() {
+        if (Container.session.isLogined() == false) {
+            System.out.println("로그인 후 이용하세요");
+            return;
+        }
         System.out.println("==글쓰기==");
         System.out.print("제목 : ");
         String title = sc.nextLine();
         System.out.print("내용 : ");
         String body = sc.nextLine();
 
-        int id = articleService.doWrite(title, body);
+        int memberId = Container.session.loginedMemberId;
+
+        int id = articleService.doWrite(memberId, title, body);
 
         System.out.println(id + "번 글이 생성됨");
     }
@@ -46,13 +46,17 @@ public class ArticleController {
             return;
         }
 
-        System.out.println("  번호  /   제목  ");
+        System.out.println("  번호  /   작성자    /   제목  ");
         for (Article article : articles) {
-            System.out.printf("  %d     /   %s   \n", article.getId(), article.getTitle());
+            System.out.printf("  %d     /     %s      /   %s   \n", article.getId(), article.getName(), article.getTitle());
         }
     }
 
     public void doModify(String cmd) {
+        if (Container.session.isLogined() == false) {
+            System.out.println("로그인 후 이용하세요");
+            return;
+        }
 
         int id = 0;
 
@@ -107,11 +111,16 @@ public class ArticleController {
         System.out.println("번호 : " + article.getId());
         System.out.println("작성날짜 : " + article.getRegDate());
         System.out.println("수정날짜 : " + article.getUpdateDate());
+        System.out.println("작성자 : " + article.getName());
         System.out.println("제목 : " + article.getTitle());
         System.out.println("내용 : " + article.getBody());
     }
 
     public void doDelete(String cmd) {
+        if (Container.session.isLogined() == false) {
+            System.out.println("로그인 후 이용하세요");
+            return;
+        }
 
         int id = 0;
 

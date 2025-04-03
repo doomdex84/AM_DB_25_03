@@ -4,7 +4,6 @@ import org.example.container.Container;
 import org.example.dao.ArticleDao;
 import org.example.dto.Article;
 
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,8 +16,8 @@ public class ArticleService {
         this.articleDao = Container.articleDao;
     }
 
-    public int doWrite(String title, String body) {
-        return articleDao.doWrite(title, body);
+    public int doWrite(int memberId, String title, String body) {
+        return articleDao.doWrite(memberId,title, body);
 
     }
 
