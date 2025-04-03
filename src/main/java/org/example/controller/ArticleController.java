@@ -1,24 +1,26 @@
 package org.example.controller;
 
+import org.example.container.Container;
 import org.example.dto.Article;
 import org.example.service.ArticleService;
 
-import java.sql.Connection;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
 public class ArticleController {
 
-    private Connection conn;
-    private Scanner sc;
+
+
 
     private ArticleService articleService;
+    private Scanner sc;
 
-    public ArticleController(Scanner sc, Connection conn) {
-        this.sc = sc;
-        this.conn = conn;
-        this.articleService = new ArticleService(conn);
+    public ArticleController() {
+        this.articleService = Container.articleService;
+        this.sc = Container.sc;
+
     }
 
 
